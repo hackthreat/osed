@@ -15,9 +15,7 @@ Refer to chapter 3 of the EXP-301 syllabus.
  * Shellzip 3.0 Beta 3
 
 ### 1.2. Remote Exploits
- * Vulnserver TRUN
- * Vulnserver GTER
- * Vulnserver HTER
+ * [Vulnserver TRUN](/1-stack-overflows/remote/vulnserver-trun)
  * [Brainpan](/1-stack-overflows/remote/brainpan)
  * [DoStackBufferOverflowGood](/1-stack-overflows/remote/dostackbufferoverflowgood)
  * FreeFloat FTP Server 1.0
@@ -72,6 +70,7 @@ Refer to chapter 6 of the EXP-301 syllabus.
  * IP-Tools 2.5
 
 ### 3.2. Remote Exploits
+ * Vulnserver GTER
  * Vulnserver GMON
  * Vulnserver KSTET
  * Easy File Sharing Web Server 7.2
@@ -97,6 +96,7 @@ Refer to chapter 7 of the EXP-301 syllabus.
 
 ### 4.2. Remote Exploits
  * Vulnserver LTER
+ * Vulnserver HTER 
 
 
 ## 5. Stack Overflows and DEP Bypass
