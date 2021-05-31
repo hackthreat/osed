@@ -1,3 +1,0 @@
-<h1>You have reached my MiniShare server</h1>
-
-<p>Here's the list of my shared files:</p>
