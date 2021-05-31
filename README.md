@@ -20,7 +20,7 @@ Refer to chapter 3 of the EXP-301 syllabus.
  * [DoStackBufferOverflowGood](/1-stack-overflows/remote/dostackbufferoverflowgood)
  * [FreeFloat FTP Server 1.0](1-stack-overflows/remote/freefloat-ftp-server-1.0)
  * PCMan FTP Server 2.0.7
- * MiniShare 1.4.1
+ * [MiniShare 1.4.1](1-stack-overflows/remote/minishare-1.4.1)
  * Easy Address Book Web Server 1.6
  * EFS Easy Chat Server 3.1
 

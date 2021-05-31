@@ -1,0 +1,109 @@
+<html>
+<head><title>MiniShare - Minimal HTTP Server</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>MiniShare Documentation</h1>
+
+<p><a href="http://minishare.sf.net">Visit the MiniShare homepage for up to date info and help.</a></p>
+
+<h2>Quick Start</h2>
+
+<p>The simplest way to use MiniShare:</p>
+<ol>
+<li>Select a bunch of files with the mouse as you would do when e.g. copying or moving files.</li>
+<li>Drag and drop them on MiniShare.</li>
+<li>Select the files in the files list in MiniShare.</li>
+<li>Right click the list and select <i>Copy URL(s) on Clipboard</i> in the menu.</li>
+<li>Paste the URL anywhere you want, the address can be used just like any address.</li>
+<li>Close MiniShare when you don't need to share the files anymore.</li>
+</ol>
+
+<h2>Basic Use</h2>
+
+<p>The basic functionality of MiniShare is simple: </p>
+<ol>
+<li>Serve individual files</li>
+<li>Display a file listing</li>
+</ol>
+
+<h3>Sharing Individual files</h3>
+
+<p>See Quick Start.</p>
+
+<p>Sometimes it can be useful to enable the feature that adds random letters to the URL that is generated
+for files (for example, if you have many files with the exact filename, or just that you can't easily guess
+the URL), just enter any non-zero value in <i>Number of random letters in path</i> in the Config dialog.</p>
+
+<h3>File Listing Page/Index Page</h3>
+
+<p>You can enable this by telling MiniShare what is the path to this page. In the Config dialog, 
+enter anything in the edit box titled <i>Index page path</i>. For example, if you enter '/' (slash),
+the index page can be accessed with url <kbd>http://your.ip.address/</kbd>. Or, if you enter '/home' (note 
+the slash before the text, it is needed), the index can be found at <kbd>http://your.ip.address/home</kbd>.
+Pay attention that MiniShare is very strict about the path, so <kbd>http://your.ip.address/home</kbd> is not 
+the same as <kbd>http://your.ip.address/home/</kbd> (with an additional slash in the end), as with more 
+advanced servers. The default path is '/', which is easy to access with a web browser, just enter your ip address.</p>
+
+<p>If you don't enter anything in the edit box, the index page simply can't be found and the user trying to
+access it will get a '404 Not Found' error.</p>
+
+<p>You can always just right click on MiniShare and click <i>Copy Index URL on Clipboard</i> to easily access the URL. If you can't
+see the option, you have to enable this feature (described above).</p>
+
+<h4>File List</h4>
+
+<p>You can enable or disable the display of the shared files list with the checkbox titled <i>Show file list on index page</i>.
+Also, you can control the visibility of individual shared files on the page by right clicking on a shared file and clicking 
+<i>Show/Hide Selected Files</i> (this toggles between visibility and invisibility in the file list).</p>
+
+<h4>MOTD</h4>
+
+<p>You can change the displayed text by specifying the 'Message of the Day' file (or MOTD file) in the edit box
+titled <i>MOTD file path</i>.</p>
+
+
+
+<h2>Advanced Use</h2>
+
+<h3>Command Line Switches</h3>
+
+<p>MiniShare can (as of version 1.3.0) be used from the command line for advanced and experimental usage. This makes it possible
+to schedule and automatize things. Switches can be used to add and remove files from running MiniShare instance or used to add
+files immediately when MiniShare is run. Multiple switches can be used (including e.g. multiple <kbd>-add</kbd> switches).</p>
+
+<p>
+<table style="margin-left: 16px;">
+<tr class="header"><td>Introduced in</td><td>Switch</td> <td>Description</td></tr>
+<tr><td>-</td><td><kbd>-add -a</kbd> &lt;filename&gt;</td> <td>Add file</td></tr>
+<tr><td>-</td><td><kbd>-add_and_copy -ac</kbd> &lt;filename&gt;</td> <td>Add file and copy the URL to clipboard</td></tr>
+<tr><td>-</td><td><kbd>-remove -r</kbd> &lt;filename&gt;</td> <td>Remove file by the filename (has to be a full path)</td></tr>
+<tr><td>-</td><td><kbd>-remove_shared_as -rs</kbd> &lt;path&gt;</td> <td>Remove file by the shared path (has to be a full path)</td></tr>
+<tr><td>-</td><td><kbd>-die -d</kbd> &lt;time&gt;</td> <td>Shutdown after given time (in seconds)</td></tr>
+<tr><td>-</td><td><kbd>-minimize -m</kbd></td> <td>Start minimized</td></tr>
+<tr><td>1.4.0</td><td><kbd>-use_old_engine</kbd></td> <td>Use the older HTTP server engine</td></tr>
+<tr><td>1.4.0</td><td><kbd>-list -l</kbd> &lt;filename&gt;</td> <td>Load and save shared files from a different file than the default <kbd>shared.txt</kbd> (full path recommended)</td></tr>
+<tr><td>1.4.0</td><td><kbd>-force_new_instance -f</kbd></td> <td>Force the opening of an another MiniShare instance instead of displaying the running instance (experimental)</td></tr>
+<tr><td>1.4.0</td><td><kbd>-add_user -au</kbd> &lt;<i>user</i>:<i>password</i>&gt;</td> <td>Add new user, all connections then require this authorization (experimental)</td></tr>
+</table>
+</p>
+
+<h4>Examples</h4>
+
+<code>minishare.exe -add c:\file.zip</code>
+<p>This is the same as if you would drag the file <kbd>file.zip</kbd> on MiniShare.</p>
+<code>minishare.exe -add_and_copy c:\file.zip -die 300 -minimize</code>
+<p>Add the file <kbd>file.zip</kbd>, copy the URL for it on clipboard, never show the GUI and shutdown MiniShare 
+after 5 minutes has passed. Useful if you feel like not having the program running for the whole night.</p>
+<code>minishare.exe -au matti:maekikotka -add c:\file.zip</code>
+<p>Share <kbd>file.zip</kbd> as usual, but the specified login (the username '<kbd>matti</kbd>' and the password '<kbd>maekikotka</kbd>') is needed.</p>
+
+<h3>User Authentication/Password Protecting Files</h3>
+
+<p>As of version 1.4.0, basic HTTP authentication is possible. The support is still minimal and in testing phase, 
+so the functionality is limited. Currently it is possible only to protect all files with one user/password combo, 
+with the command line swich '<kbd>-add_user</kbd> &lt;<i>user</i>:<i>password</i>&gt;' (or the short form 
+'<kbd>-au</kbd>'). Starting MiniShare with this switch protects all current and added files with the specified login.</p>
+
+</body>
+</html>

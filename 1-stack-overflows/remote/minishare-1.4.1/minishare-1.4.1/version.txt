@@ -1,0 +1,169 @@
+MiniShare Version History:
+
+0.50    - Initial release. Buggy.
+0.51    - Fixed code so the server actually works.
+0.52    - Able to minimize to system tray.
+        - Added URL encoding.
+        - Interface fixes.
+0.53    - Fixed problems with local IPs.
+0.54    - Added config file.
+        - Added defineable port.
+        - Added user-specified domain.
+0.55    - MiniShare now supports resuming the transfer.
+0.56    - Faster file send (from max 400KB/s -> 1.2MB/s)
+        - Able to limit the number of connections.
+        - Server replies added (like "500 Service Unavailable" when overloaded
+          etc.)
+        - Added an index page listing all files.
+        - Fixed a crashing bug relating to non US-ASCII characters in
+          filename.
+0.57    - Now uses NSIS installer from Nullsoft
+        - HTML documentation
+        - Able to customize the file list page.
+        - Able to log activity.
+0.58    - Hopefully fixed a crashing bug related to getting own ip on a LAN.
+        - Better file list page.
+0.59    - Lots of fixes + additions to old features and GUI.
+        - More stable.
+0.60    - Implemented MIME types at last, not as well as it should though.
+        - Hopefully fixed more stability issues.
+0.61    - Another idiotic bug related to long filenames (80> chars) fixed
+        - MiniShare now has a icon, thanks to Mick J., the tray icon changes
+          color if there's acitivity on the server.
+0.62    - New format for the file shared filenames and urls are stored (you
+          can edit it with any text editor)
+0.63    - Fixes several random and really stupid bugs.
+0.64    - Able to share whole directories.
+        - Bug in new shared list format fixed.
+        - Bug that crashed the program when someone trying to access a file
+          without an extension in the filename fixed.
+0.65    - Finally fixed problems with wrong MIME types, also a much better
+          way in defining them.
+        - Also fixed the usual bunch of bugs.
+0.66    - Better file list.
+        - Configuration dialog. Makes it possible to change settings on the
+          fly etc.
+        - Hopefully the last release before the 1.0 final working version.
+          Still a lot of little things to fix.
+---
+1.0B1   - Mainly cosmetic fixes in the GUI.
+        - Basically, MiniShare is now as much as it was intented to be and
+          a whole lot better looking ;)
+        - Fixed the recursive file add so it creates a proper path for the
+          file (special characters were not replaced with the ascii code).
+        - Tray icon is now visible all the time.
+        - The only things to come are a IP selection dialog for those with
+          multiple IPs and a better looking About dialog.
+
+1.0     - MiniShare should work so well now it qualifies as non-beta.
+        - Fixed several GUI glitches.
+        - Fixed a bug that caused seemingly random crashes.
+        - Added a dialog box where user can select the IP if more that one
+          are found.
+        - The index page now uses a CSS stylesheet so it can be customized.
+          The stylesheet file is always shared as "/minishare.css".
+
+1.01    - Fixed a bug that caused the program to crash if domain name could
+          not be determined (for the log file).
+
+1.1b    - Index page file list now shows the total amount and total size of
+          shared files. Also, file sizes are shown in bytes, kilobytes,
+          megabytes or gigabytes depending on the size.
+        - Better memory handling.
+        - Misc. interface improvements.
+        - Last-modified header actually works now.
+        - A few vulnerabilities still remain.
+        
+1.1B2   - Changed the file list view a bit.
+        - Files with equal signs (=) in the filename are now saved correctly in
+          the shared file list (not compatible with the older format, but 
+          should not be a big problem). 
+        - The bug that crashed the program related to long filenames fixed.
+        - Added add file/add directory dialogs.
+        - Other smaller bugfixes.
+    
+1.1     - The list columns now remember their width.
+        - The usual fixes.
+
+1.2B1   - Added a connection viewer for spying downloaders. Bound to have bugs.
+        - Multilingual. This is mainly a release for the translators to study.
+        
+1.2B2   - Connection view update fixed.
+        - Fixed random problems with the stylesheet.
+        
+1.2     - Connection view now shows right percentage and download speed.
+        - File list now shows icons.
+        - Fixed many GUI glitches with non-default themes and color schemes.
+        - Fixed problems with relative paths in the config (adding files with the 
+          Open File... dialog changed the working directory, thus the stylesheet and
+          other files were not found with the relative path).
+        - Added a status bar and moved the number of connections text there.
+        - Added the logging of full HTTP request, if you want to see what is really
+          requested. Now MiniShare also logs more detailed info.
+        - Polished the default stylesheet.
+        
+1.21    - Fixed common problems: not being able to start minimized, wrong 
+          absolute URL for the files on index page (changed to relative URL).
+          
+1.3.0   - Random fixes, code cleanup etc. related to the release as open source.
+        - Able to hide files from the list
+        - If MiniShare is already running and the program is started, the already 
+          running program will pop up.
+        - Able to add and remove files from command line (needs MiniShare running
+          in background). They work like this:
+          
+            minishare.exe -add <filename>
+            minishare.exe -remove <filename>
+            minishare.exe -remove_shared_as <shared_as_name>
+          
+          <filename> has to be a full path.  
+          
+1.3.1   - Fixed problems starting the program minimized.
+        - Added new command line switches:
+        
+            minishare -die <seconds>    Run program for <seconds> seconds or kill an
+                                        active instance in <seconds> seconds.
+            minishare -minimize         Start minimized
+            minishare -add_and_copy <filename>  Add file and copy the URL to clipboard
+            
+        - Modified -add <filename> so a new instance will be started if no instances
+          are running at the time.
+        - You can combine the switches as you like: 
+            
+          e.g.   minishare.exe -add c:\file.zip -add d:\directory -minimize -die 300
+                
+                (add file.zip and the files from directory, don't show the GUI and 
+                shutdown after 5 minutes)
+                
+1.3.2   - Fixed a bug that made MiniShare think the port is in use when the 
+          configuration was changed (which restarts the server).
+        - Fixed problems with getting filesize for the index list.
+        - Added caching for file modified date.
+        - The binary is compressed with UPX, again.
+        
+1.3.3   - Fixed a bug that made denial of service type attacks possible (using a 
+          request header with no CR/LF in the end). 
+
+1.3.4   - Fixed another request header related bug.
+        - Fixed hassle with domain name from config not used.
+        - Added a message box confirming progam exit.
+        
+1.4.0   - Rewrote the HTTP engine (old engine available with switch -use_old_engine)
+
+            ** The old engine could be and probably is a bit more reliable **
+            
+            New features in the new engine:
+            
+            - Persistent connections (HTTP Keep-Alive)
+            - Basic HTTP authentication 
+        
+        - Added the ability to kick and ban users (including permanent bans using
+          the file banned.txt)    
+        - Added a bunch of command line switches
+        - Hopefully fixed a load of 32-bit filepointer/filesize related issues
+        - Better looking error pages (better handling in the source code, too)
+        - Added a edit file dialog 
+        
+1.4.1	- Fixed a bug that made the MOTD disappear from the config.
+		- Fixed a bug that didn't make the new engine update the progress meter.
+		
