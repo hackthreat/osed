@@ -18,7 +18,7 @@ Refer to chapter 3 of the EXP-301 syllabus.
  * [Vulnserver TRUN](/1-stack-overflows/remote/vulnserver-trun)
  * [Brainpan](/1-stack-overflows/remote/brainpan)
  * [DoStackBufferOverflowGood](/1-stack-overflows/remote/dostackbufferoverflowgood)
- * FreeFloat FTP Server 1.0
+ * [FreeFloat FTP Server 1.0](1-stack-overflows/remote/freefloat-ftp-server-1.0)
  * PCMan FTP Server 2.0.7
  * MiniShare 1.4.1
  * Easy Address Book Web Server 1.6
