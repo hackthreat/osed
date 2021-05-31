@@ -21,8 +21,6 @@ Refer to chapter 3 of the EXP-301 syllabus.
  * [FreeFloat FTP Server 1.0](1-stack-overflows/remote/freefloat-ftp-server-1.0)
  * PCMan FTP Server 2.0.7
  * [MiniShare 1.4.1](1-stack-overflows/remote/minishare-1.4.1)
- * Easy Address Book Web Server 1.6
- * EFS Easy Chat Server 3.1
 
 
 ## 2. Exploiting SEH Overflows
@@ -52,6 +50,8 @@ Refer to chapter 4 of the EXP-301 syllabus.
  * File Sharing Wizard 1.5.0
  * httpdx 0.5b - FTP Server
  * freeSSHd 1.2.1
+ * EFS Easy Chat Server 3.1
+ * Easy Address Book Web Server 1.6
 
 
 ## 3. Overcoming Space Restrictions: Egghunters
