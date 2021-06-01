@@ -8,7 +8,7 @@ Refer to chapter 3 of the EXP-301 syllabus.
 
 ### 1.1. Local Exploits
  * [VUPlayer 2.49](/1-stack-overflows/local/vuplayer-2.49)
- * Easy RM to MP3 Converter v2.7.3.700
+ * [Easy RM to MP3 Converter v2.7.3.700](/1-stack-overflows/local/easy-rm-to-mp3-converter-v2.7.3.700)
  * DVD X Player Pro v5.5
  * BlazeDVD Pro Player 6.1
  * Shellzip 3.0 Beta 3
