@@ -9,9 +9,6 @@ Refer to chapter 3 of the EXP-301 syllabus.
 ### 1.1. Local Exploits
  * [VUPlayer 2.49](/1-stack-overflows/local/vuplayer-2.49)
  * [Easy RM to MP3 Converter v2.7.3.700](/1-stack-overflows/local/easy-rm-to-mp3-converter-v2.7.3.700)
- * DVD X Player Pro v5.5
- * BlazeDVD Pro Player 6.1
- * Shellzip 3.0 Beta 3
 
 ### 1.2. Remote Exploits
  * [Vulnserver TRUN](/1-stack-overflows/remote/vulnserver-trun)
@@ -38,6 +35,7 @@ Refer to chapter 4 of the EXP-301 syllabus.
  * VeryPDF Image2PDF Converter
  * eZip Wizard 3.0
  * ASX to MP3 converter 3.1.2.1
+ * DVD X Player Pro v5.5
 
 ### 2.2. Remote Exploits
  * Vulnserver GMON
