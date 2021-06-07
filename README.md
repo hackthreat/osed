@@ -42,7 +42,7 @@ Refer to chapter 4 of the EXP-301 syllabus.
  * [Vulnserver GMON](/2-seh-overflows/remote/vulnserver-gmon)
  * [EFS Easy Chat Server 3.1](/2-seh-overflows/remote/efs-easy-chat-server-3.1)
  * Disk Sorter Enterprise 9.5.12
- * Easy File Sharing Web Server 7.2
+ * [Easy File Sharing Web Server 7.2](/2-seh-overflows/remote/easy-file-sharing-web-server-7.2)
  * freeFTPd 1.0.10
  * FathFTP 1.8
  * File Sharing Wizard 1.5.0
