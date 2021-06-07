@@ -23,6 +23,7 @@ Refer to chapter 3 of the EXP-301 syllabus.
 Refer to chapter 4 of the EXP-301 syllabus.
 
 ### 2.1. Local Exploits
+ * FTPShell Server v6.80
  * 10-Strike Network Inventory Explorer 8.65
  * 10-Strike Network Scanner v3.0
  * Millenium MP3 Studio 2.0
@@ -39,8 +40,7 @@ Refer to chapter 4 of the EXP-301 syllabus.
 
 ### 2.2. Remote Exploits
  * [Vulnserver GMON](/2-seh-overflows/remote/vulnserver-gmon)
- * FTPShell Server v6.80
- * EFS Easy Chat Server 3.1
+ * [EFS Easy Chat Server 3.1](/2-seh-overflows/remote/efs-easy-chat-server-3.1)
  * Disk Sorter Enterprise 9.5.12
  * Easy File Sharing Web Server 7.2
  * freeFTPd 1.0.10
@@ -48,7 +48,6 @@ Refer to chapter 4 of the EXP-301 syllabus.
  * File Sharing Wizard 1.5.0
  * httpdx 0.5b - FTP Server
  * freeSSHd 1.2.1
- * EFS Easy Chat Server 3.1
  * Easy Address Book Web Server 1.6
 
 
